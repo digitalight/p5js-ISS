@@ -11,7 +11,7 @@
 
 var mapimg;
 var issicon;
-var url = '//api.open-notify.org/iss-now.json';
+var url = 'http://api.open-notify.org/iss-now.json';
 var isslat = 0;
 var isslon = 0;
 var issX;
