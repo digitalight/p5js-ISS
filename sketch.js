@@ -11,7 +11,7 @@
 
 var mapimg;
 var issicon;
-var url = 'http://api.open-notify.org/iss-now.json';
+var url = 'https://api.wheretheiss.at/v1/satellites/25544';
 var isslat = 0;
 var isslon = 0;
 var issX;
@@ -40,8 +40,8 @@ function getISSLocation() {
 
 // Get latitude and longitude from Data
 function gotData(data) {
-  isslat = data.iss_position.latitude;
-  isslon = data.iss_position.longitude;
+  isslat = data.latitude;
+  isslon = data.longitude;
   // Convert lat and long to pixels data
   issY = map(isslat, 90, -90, 0, 600);
   issX = map(isslon, -180, 180, 0, 1024);
