@@ -16,6 +16,7 @@ var isslat = 0;
 var isslon = 0;
 var issX;
 var issY;
+var issvel = 0;
 
 // Preload images of Map and ISS icon
 function preload() {
@@ -31,6 +32,9 @@ function setup() {
   // Get Location of ISS
   getISSLocation();
   setInterval(getISSLocation,5000);
+  // Setup text
+  textSize(16);
+  textStyle(BOLD);
 }
 
 // Function to get data from ISS API
@@ -38,14 +42,16 @@ function getISSLocation() {
   loadJSON(url, gotData);
 }
 
-// Get latitude and longitude from Data
+// Get latitude, longitude and velocity from Data
 function gotData(data) {
   isslat = data.latitude;
   isslon = data.longitude;
+  issvel = round(data.velocity * 0.6213712 );
   // Convert lat and long to pixels data
   issY = map(isslat, 90, -90, 0, 600);
   issX = map(isslon, -180, 180, 0, 1024);
 }
+
 
 function draw() {
   imageMode(CORNER);
@@ -55,4 +61,9 @@ function draw() {
   // Draw the ISS on the screen
   image(issicon, issX, issY);
   // ellipse(issX, issY, 24, 24);
+
+  // Text information
+  text('Lat:         ' + round(isslat), 25, 535);
+  text('Long:      ' + round(isslon), 25, 552);
+  text('Velocity: ' + issvel + ' mph', 25, 570);
 }
